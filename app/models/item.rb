@@ -1,18 +1,16 @@
-class Item < ApplicationRecord
+class Item < ActiveRecord::Base
+  attr_accessible :price, :name, :real, :weight, :description
 
   validates :price, numericality: {greater_than: 0, allow_nil: true}
   validates :name, :description, presence: true
 
+  validates :name, presence: true
 
-  after_initialize { puts 'initialized'}
-  after_save { puts 'saved'}
-  after_create { puts 'created'}
-  after_update { puts 'updated'}
-  after_destroy { puts 'destroyed'}
+  after_initialize { } #Item.new; Item.first
+  after_save       { } #Item.save; Item.create; item.update_attributes
+  after_create     { }
+  after_update     { }
+  after_destroy    { } #item.destroy
 
-  private
 
-  def item_params
-    params.require(:item).permit(:price, :name, :real, :weight, :description)
-  end
 end
