@@ -15,7 +15,13 @@
       <%= link_to "Sign in", new_user_session_path %> | <%= link_to "Registration", new_user_registration_path %>
   <% end %>
 </div>
+
+<p style="color: red"><%= flash[:error] %></p>
+<p style="color: green"><%= flash[:success] %></p>
+
 <%= yield %>
+
+<%= render :partial => "shared/frontend_notifier" %>
 
 </body>
 </html>
