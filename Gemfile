@@ -6,6 +6,10 @@ gem 'sqlite3'
 gem 'thin'
 gem 'paperclip'
 gem 'devise'
+gem 'rack', "1.4.1"
+gem 'rmagick'
+gem 'carrierwave'
+gem  'haml-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
