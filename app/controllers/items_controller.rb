@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_filter :find_item,      only: [:show, :edit, :update, :destroy, :upvote]
+  before_filter :find_item,      only: [:show, :edit, :update, :destroy, :upvote, :crop_image]
   before_filter :check_if_admin, only: [:edit, :update, :new, :create, :destroy]
 
   def index
@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
     @items = @items.where("created_at >= ?", 1.day.ago)            if params[:today]
     @items = @items.where("votes_count >= ?", params[:votes_from]) if params[:votes_from]
     @items = @items.order("votes_count DESC", "price").limit(50)
-    @items = @items.includes(:image)
+    #@items = @items.includes(:image)
 
 
   end
@@ -70,7 +70,7 @@ class ItemsController < ApplicationController
 
   def crop_image
     if request.put?
-      @item.crop_image!(params[:item][:image_crop_date])
+      @item.crop_image!(params[:item][:image_crop_data])
       redirect_to item_path(@item)
     end
   end
