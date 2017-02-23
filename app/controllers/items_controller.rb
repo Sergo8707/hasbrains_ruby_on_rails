@@ -37,7 +37,7 @@ class ItemsController < ApplicationController
 
   # /items POST
   def create
-    @item = Item.create(params[:item])
+    @item = Item.create(item_params)
     if @item.errors.empty?
       redirect_to crop_image_item_path(@item)
     else
@@ -47,7 +47,7 @@ class ItemsController < ApplicationController
 
   # /items/1 PUT
   def update
-    @item.update_attributes(params[:item])
+    @item.update_attributes(item_params)
     if @item.errors.empty?
       false[:success] = "Item successfully updated!"
       redirect_to crop_image_item_path(@item)
@@ -68,11 +68,22 @@ class ItemsController < ApplicationController
     redirect_to action: :index
   end
 
+  def crop_image
+    if request.put?
+      @item.crop_image!(params[:item][:image_crop_date])
+      redirect_to item_path(@item)
+    end
+  end
+
   private
 
   def find_item
     @item = Item.where(id: params[:id]).first
     render_404 unless @item
+  end
+
+  def item_params
+    params.require(:item).permit(:price, :weight, :real, :name, :description, :image)
   end
 
 end
