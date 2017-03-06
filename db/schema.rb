@@ -13,58 +13,58 @@
 
 ActiveRecord::Schema.define(version: 20170223185606) do
 
-  create_table "blog_posts", force: true do |t|
-    t.string   "title"
+  create_table "blog_posts", force: :cascade do |t|
+    t.string   "title",      limit: 255
     t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  create_table "carts", force: true do |t|
+  create_table "carts", force: :cascade do |t|
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "comments", force: true do |t|
+  create_table "comments", force: :cascade do |t|
     t.text     "body"
     t.integer  "user_id"
     t.integer  "commentable_id"
-    t.string   "commentable_type"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.string   "commentable_type", limit: 255
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
-  create_table "images", force: true do |t|
-    t.string   "file"
+  create_table "images", force: :cascade do |t|
+    t.string   "file",           limit: 255
     t.integer  "imageable_id"
-    t.string   "imageable_type"
+    t.string   "imageable_type", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "items", force: true do |t|
+  create_table "items", force: :cascade do |t|
     t.float    "price"
-    t.string   "name"
+    t.string   "name",        limit: 255
     t.boolean  "real"
     t.float    "weight"
-    t.string   "description"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "votes_count", default: 0
-    t.string   "image"
+    t.string   "description", limit: 255
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "votes_count",             default: 0
+    t.string   "image",       limit: 255
   end
 
   add_index "items", ["name"], name: "index_items_on_name"
   add_index "items", ["price"], name: "index_items_on_price"
 
-  create_table "orders", force: true do |t|
+  create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "positions", force: true do |t|
+  create_table "positions", force: :cascade do |t|
     t.integer  "cart_id"
     t.integer  "item_id"
     t.integer  "quantity"
@@ -72,13 +72,13 @@ ActiveRecord::Schema.define(version: 20170223185606) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: true do |t|
-    t.string   "login"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+  create_table "users", force: :cascade do |t|
+    t.string   "login",                  limit: 255
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
   end
