@@ -1,8 +1,11 @@
-%h1= @item.name
+%h1= @page_title = @item.name
 
 %p= image_tag @item.image.normal unless @item.image.blank?
 
 %ul
-  %li= "#{@item.price} руб."
+  %li= "#{@item.price} $"
   %li= urls_to_links(urls_to_images(@item.description))
-  %li Вес: #{@item.weight}  кг.
+  %li
+    = t("item.weight")
+    = @item.weight
+    кг.
