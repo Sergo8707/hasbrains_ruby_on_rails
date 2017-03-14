@@ -16,6 +16,7 @@ gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'simple_form'
 gem 'haml'
+gem 'exception_notification'
 
 
 gem 'jbuilder', '~> 2.0'
