@@ -1,0 +1,8 @@
+ru:
+  simple_form:
+    labels:
+      item:
+        name: 'Название товара'
+    hints:
+      item:
+        name: 'Не должно превышать 80 символов'
